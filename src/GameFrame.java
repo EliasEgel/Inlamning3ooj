@@ -12,26 +12,26 @@ public class GameFrame extends JFrame implements ActionListener {
     JPanel l1 = new JPanel(new GridLayout(4,4));
     JLabel northlabel = new JLabel("", SwingConstants.CENTER);
     JPanel southPanel = new JPanel();
-    JButton b1 = new JButton(f.getList().get(0));
-    JButton b2 = new JButton(f.getList().get(1));
-    JButton b3 = new JButton(f.getList().get(2));
-    JButton b4 = new JButton(f.getList().get(3));
-    JButton b5 = new JButton(f.getList().get(4));
-    JButton b6 = new JButton(f.getList().get(5));
-    JButton b7 = new JButton(f.getList().get(6));
-    JButton b8 = new JButton(f.getList().get(7));
-    JButton b9 = new JButton(f.getList().get(8));
-    JButton b10 = new JButton(f.getList().get(9));
-    JButton b11 = new JButton(f.getList().get(10));
-    JButton b12 = new JButton(f.getList().get(11));
-    JButton b13 = new JButton(f.getList().get(12));
-    JButton b14 = new JButton(f.getList().get(13));
-    JButton b15 = new JButton(f.getList().get(14));
-    JButton b16 = new JButton(f.getList().get(15));
+    JButton b1 = new JButton();
+    JButton b2 = new JButton();
+    JButton b3 = new JButton();
+    JButton b4 = new JButton();
+    JButton b5 = new JButton();
+    JButton b6 = new JButton();
+    JButton b7 = new JButton();
+    JButton b8 = new JButton();
+    JButton b9 = new JButton();
+    JButton b10 = new JButton();
+    JButton b11 = new JButton();
+    JButton b12 = new JButton();
+    JButton b13 = new JButton();
+    JButton b14 = new JButton();
+    JButton b15 = new JButton();
+    JButton b16 = new JButton();
     JButton newGame = new JButton("New Game");
     JButton winGame = new JButton("Easy Win");
     GameFrame(){
-
+        f.randomizeOrder();
         add(mainPanel);
         mainPanel.add(l1, BorderLayout.CENTER);
 
@@ -39,6 +39,11 @@ public class GameFrame extends JFrame implements ActionListener {
         l1.add(b5);l1.add(b6);l1.add(b7);l1.add(b8);
         l1.add(b9);l1.add(b10);l1.add(b11);l1.add(b12);
         l1.add(b13);l1.add(b14);l1.add(b15);l1.add(b16);
+
+        b1.setText(f.getList().get(0));b2.setText(f.getList().get(1));b3.setText(f.getList().get(2));b4.setText(f.getList().get(3));
+        b5.setText(f.getList().get(4));b6.setText(f.getList().get(5));b7.setText(f.getList().get(6));b8.setText(f.getList().get(7));
+        b9.setText(f.getList().get(8));b10.setText(f.getList().get(9));b11.setText(f.getList().get(10));b12.setText(f.getList().get(11));
+        b13.setText(f.getList().get(12));b14.setText(f.getList().get(13));b15.setText(f.getList().get(14));b16.setText(f.getList().get(15));
 
         b1.addActionListener(this);b2.addActionListener(this);b3.addActionListener(this);b4.addActionListener(this);
         b5.addActionListener(this);b6.addActionListener(this);b7.addActionListener(this);b8.addActionListener(this);
@@ -252,18 +257,16 @@ public class GameFrame extends JFrame implements ActionListener {
             }
         }
         if(e.getSource() == newGame){
+            f.randomizeOrder();
 
-            java.util.List<String> newValues = Arrays.asList("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"," ");
-            Collections.shuffle(newValues);
-
-            b1.setText(newValues.get(0));b5.setText(newValues.get(4));
-            b2.setText(newValues.get(1));b6.setText(newValues.get(5));
-            b3.setText(newValues.get(2));b7.setText(newValues.get(6));
-            b4.setText(newValues.get(3));b8.setText(newValues.get(7));
-            b9.setText(newValues.get(8)); b13.setText(newValues.get(12));
-            b10.setText(newValues.get(9));b14.setText(newValues.get(13));
-            b11.setText(newValues.get(10));b15.setText(newValues.get(14));
-            b12.setText(newValues.get(11));b16.setText(newValues.get(15));
+            b1.setText(f.getList().get(0));b5.setText(f.getList().get(4));
+            b2.setText(f.getList().get(1));b6.setText(f.getList().get(5));
+            b3.setText(f.getList().get(2));b7.setText(f.getList().get(6));
+            b4.setText(f.getList().get(3));b8.setText(f.getList().get(7));
+            b9.setText(f.getList().get(8)); b13.setText(f.getList().get(12));
+            b10.setText(f.getList().get(9));b14.setText(f.getList().get(13));
+            b11.setText(f.getList().get(10));b15.setText(f.getList().get(14));
+            b12.setText(f.getList().get(11));b16.setText(f.getList().get(15));
         }
         if(e.getSource() == winGame){
             List<String> winValues = Arrays.asList("1","2","3","4","5","6","7","8","9","10","11","12","13","14"," ","15");
@@ -277,8 +280,8 @@ public class GameFrame extends JFrame implements ActionListener {
             b11.setText(winValues.get(10));b15.setText(winValues.get(14));
             b12.setText(winValues.get(11));b16.setText(winValues.get(15));
         }
-        if(b1.getText()=="1"&& b2.getText()=="2"&&b3.getText()=="3"&&b4.getText()=="4"&&b5.getText()=="5"&& b6.getText()=="6"&&b7.getText()=="7"&&b8.getText()=="8"
-                &&b9.getText()=="9"&& b10.getText()=="10"&&b11.getText()=="11"&&b12.getText()=="12"&&b13.getText()=="13"&& b14.getText()=="14"&&b15.getText()=="15"&&b16.getText()==" "){
+        if(f.checkWon(b1.getText()+b2.getText()+b3.getText()+b4.getText()+b5.getText()+b6.getText()+b7.getText()+b8.getText()
+        +b9.getText()+b10.getText()+b11.getText()+b12.getText()+b13.getText()+b14.getText()+b15.getText()+b16.getText())){
             northlabel.setText("Gratulerar! du har vunnit");
         }else northlabel.setText("");
     }
