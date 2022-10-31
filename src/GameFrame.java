@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class GameFrame extends JFrame implements ActionListener {
     Functions f = new Functions();
@@ -26,6 +29,7 @@ public class GameFrame extends JFrame implements ActionListener {
     JButton b15 = new JButton(f.getList().get(14));
     JButton b16 = new JButton(f.getList().get(15));
     JButton newGame = new JButton("New Game");
+    JButton winGame = new JButton("Easy Win");
     GameFrame(){
 
         add(mainPanel);
@@ -43,6 +47,9 @@ public class GameFrame extends JFrame implements ActionListener {
 
         mainPanel.add(southPanel, BorderLayout.SOUTH);
         southPanel.add(newGame);
+        newGame.addActionListener(this);
+        southPanel.add(winGame);
+        winGame.addActionListener(this);
 
         mainPanel.add(northlabel, BorderLayout.NORTH);
 
@@ -244,5 +251,35 @@ public class GameFrame extends JFrame implements ActionListener {
                 b16.setText(" ");
             }
         }
+        if(e.getSource() == newGame){
+
+            java.util.List<String> newValues = Arrays.asList("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"," ");
+            Collections.shuffle(newValues);
+
+            b1.setText(newValues.get(0));b5.setText(newValues.get(4));
+            b2.setText(newValues.get(1));b6.setText(newValues.get(5));
+            b3.setText(newValues.get(2));b7.setText(newValues.get(6));
+            b4.setText(newValues.get(3));b8.setText(newValues.get(7));
+            b9.setText(newValues.get(8)); b13.setText(newValues.get(12));
+            b10.setText(newValues.get(9));b14.setText(newValues.get(13));
+            b11.setText(newValues.get(10));b15.setText(newValues.get(14));
+            b12.setText(newValues.get(11));b16.setText(newValues.get(15));
+        }
+        if(e.getSource() == winGame){
+            List<String> winValues = Arrays.asList("1","2","3","4","5","6","7","8","9","10","11","12","13","14"," ","15");
+
+            b1.setText(winValues.get(0));b5.setText(winValues.get(4));
+            b2.setText(winValues.get(1));b6.setText(winValues.get(5));
+            b3.setText(winValues.get(2));b7.setText(winValues.get(6));
+            b4.setText(winValues.get(3));b8.setText(winValues.get(7));
+            b9.setText(winValues.get(8)); b13.setText(winValues.get(12));
+            b10.setText(winValues.get(9));b14.setText(winValues.get(13));
+            b11.setText(winValues.get(10));b15.setText(winValues.get(14));
+            b12.setText(winValues.get(11));b16.setText(winValues.get(15));
+        }
+        if(b1.getText()=="1"&& b2.getText()=="2"&&b3.getText()=="3"&&b4.getText()=="4"&&b5.getText()=="5"&& b6.getText()=="6"&&b7.getText()=="7"&&b8.getText()=="8"
+                &&b9.getText()=="9"&& b10.getText()=="10"&&b11.getText()=="11"&&b12.getText()=="12"&&b13.getText()=="13"&& b14.getText()=="14"&&b15.getText()=="15"&&b16.getText()==" "){
+            northlabel.setText("Gratulerar! du har vunnit");
+        }else northlabel.setText("");
     }
 }
